@@ -1,0 +1,35 @@
+{
+  "name": "fortunate-cow-cli",
+  "version": "1.0.0",
+  "description": "A simple CLI and module that displays a random fortune using cowsay.",
+  "type": "module",
+  "main": "cli.mjs",
+  "scripts": {
+    "start": "node cli.mjs",
+    "lint": "eslint cli.mjs src/fortunateCow.js src/fortunes.json"
+  },
+  "dependencies": {
+    "boxen": "^8.0.1",
+    "cowsay": "^1.6.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.20.0",
+    "@eslint/json": "^0.10.0",
+    "eslint": "^9.20.1",
+    "globals": "^16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/fortunate-cow-cli.git"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/your-username/fortunate-cow-cli/issues"
+  },
+  "homepage": "https://github.com/your-username/fortunate-cow-cli#readme",
+  "engines": {
+    "node": ">=22.14.0"
+  }
+}

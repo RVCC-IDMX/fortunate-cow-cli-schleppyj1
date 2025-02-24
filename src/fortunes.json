@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "fortunes": [
+    {
+      "id": 1,
+      "text": "You will have a great day!",
+      "category": "general",
+      "author": "Unknown",
+      "tags": [
+        "optimism",
+        "good day"
+      ],
+      "dateAdded": "2025-02-01"
+    },
+    {
+      "id": 2,
+      "text": "Fortune favors the brave.",
+      "category": "motivational",
+      "author": "Unknown",
+      "tags": [
+        "courage",
+        "inspiration"
+      ],
+      "dateAdded": "2025-02-02"
+    },
+    {
+      "id": 3,
+      "text": "Today is a perfect day for learning JavaScript.",
+      "category": "tech",
+      "author": "Code Mentor",
+      "tags": [
+        "JavaScript",
+        "learning"
+      ],
+      "dateAdded": "2025-02-03"
+    },
+    {
+      "id": 4,
+      "text": "Believe in yourself and all that you are.",
+      "category": "motivational",
+      "author": "Unknown",
+      "tags": [
+        "self-confidence",
+        "inspiration"
+      ],
+      "dateAdded": "2025-02-04"
+    },
+    {
+      "id": 5,
+      "text": "A pleasant surprise is waiting for you.",
+      "category": "general",
+      "author": "Unknown",
+      "tags": [
+        "surprise",
+        "optimism"
+      ],
+      "dateAdded": "2025-02-05"
+    },
+    {
+      "id": 6,
+      "text": "Adventure can be real happiness.",
+      "category": "inspirational",
+      "author": "Unknown",
+      "tags": [
+        "adventure",
+        "happiness"
+      ],
+      "dateAdded": "2025-02-06"
+    }
+  ]
+}

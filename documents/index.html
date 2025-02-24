@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLI Configuration Explained: Yargs, Cowsay &amp; Boxen in Action</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background-color: #f9f9f9;
+      color: #333;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 80ch;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+
+    section {
+      margin-bottom: 1.5rem;
+    }
+
+    pre {
+      background: #ecf0f1;
+      padding: 1rem;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+      color: #e74c3c;
+    }
+
+    a {
+      color: #3498db;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #777;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>CLI Configuration Explained</h1>
+      <h2>Yargs, Cowsay &amp; Boxen in Action</h2>
+      <p>Learn how to configure your CLI using yargs with category filtering, display cowsay messages, and decorate them
+        with Boxen.</p>
+    </header>
+
+    <!-- Introduction Paragraph -->
+    <section>
+      <h2>Understanding Node's <code>process</code> and <code>process.argv</code></h2>
+      <p>
+        In Node.js, <code>process</code> is a global object that provides information about, and control over, the
+        current Node.js process.
+        It contains a variety of properties and methods that give you access to configuration settings, environment
+        variables, and runtime details.
+      </p>
+      <p>
+        One of these properties is <code>process.argv</code>, an array that holds all the command line arguments passed
+        to your application.
+        However, working directly with this raw array can be a bit cumbersome. This is where yargs comes in.
+        Yargs abstracts away the nitty-gritty details of parsing <code>process.argv</code> and lets you define your
+        command line options in a neat,
+        organized way.
+      </p>
+    </section>
+
+    <section>
+      <h2>Yargs Introduction</h2>
+      <p>
+        Yargs is a powerful utility that makes it easy to pick up and configure command line arguments in your Node.js
+        applications.
+        By using yargs, you can quickly define options, aliases, and help messages, streamlining the process of creating
+        user-friendly
+        command line tools. This flexibility allows you to pass configuration settings via objects, making your code
+        both modular and readable.
+      </p>
+    </section>
+
+    <section>
+      <h2>Yargs Setup &amp; Method Chain Explained</h2>
+      <p>
+        The snippet below configures yargs to accept a "category" option and provide help instructions. Notice how
+        multiple methods are
+        "chained" together on the yargs object. Chaining means that each method returns an object that you can
+        immediately call the next
+        method on.
+      </p>
+      <pre><code>const argv = yargs(hideBin(process.argv))
+  .option('category', {
+    alias: 'c',
+    type: 'string',
+    description: 'Select fortunes by category',
+  })
+  .help()          // Adds built-in help information
+  .alias('help', 'h')
+  .argv;</code></pre>
+      <p>
+        Here, the <code>.option()</code> method is passed an object:
+      </p>
+      <pre><code>{
+  alias: 'c',
+  type: 'string',
+  description: 'Select fortunes by category',
+}</code></pre>
+      <p>
+        Using objects to pass configuration information is powerful because it groups related settings together, making
+        the code both flexible and readable.
+      </p>
+    </section>
+
+    <section>
+      <h2>The Cowsay Configuration Object</h2>
+      <p>
+        Similarly, when we call the <code>say</code> function from the cowsay package, we pass in an object that
+        configures the appearance
+        of the cowsay message:
+      </p>
+      <pre><code>{
+  text: fortune,
+  e: "oO",
+  T: "U ",
+  r: true,      // When true, a random cow is chosen.
+  mode: "b"     // The mode option sets the cow's mood or style (e.g., "b" for bored).
+}</code></pre>
+      <p>
+        This object controls:
+      </p>
+      <ul>
+        <li>
+          <strong>text:</strong> The fortune text to be displayed.
+        </li>
+        <li>
+          <strong>e:</strong> The eyes of the cow.
+        </li>
+        <li>
+          <strong>T:</strong> The tongue of the cow.
+        </li>
+        <li>
+          <strong>r:</strong> A boolean flag that, when set to <code>true</code>, tells cowsay to select a random cow
+          from its available collection.
+        </li>
+        <li>
+          <strong>mode:</strong> Configures the cow's mood or style. Changing this value (for example, to "b" for bored)
+          will alter how your cow looks.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Boxen: Decorating Your Output</h2>
+      <p>
+        Boxen is a utility that allows you to create a decorative box around your text output. In the Fortunate Cow CLI
+        project, Boxen is used
+        to enhance the visual appearance of the fortune message by wrapping it in a stylized box.
+      </p>
+      <p>
+        With Boxen, you can customize various options such as padding, margin, border style, title, and title alignment.
+        For example, in our project:
+      </p>
+      <pre><code>const boxedMessage = boxen(fortuneMessage, {
+  title: 'Fortunate Cow',
+  titleAlignment: 'center',
+  padding: 1,
+  margin: 1,
+  borderStyle: 'double'
+});</code></pre>
+      <p>
+        This configuration tells Boxen to wrap the fortune message in a box with a double-line border, centered title,
+        and specified padding and margin.
+        Using Boxen makes your CLI output more engaging and visually appealing.
+      </p>
+    </section>
+
+    <section>
+      <h2>More Information</h2>
+      <p>
+        For further reading on these topics, check out:
+      </p>
+      <ul>
+        <li><a href="https://yargs.js.org/docs/" target="_blank" rel="noopener noreferrer">Yargs Official
+            Documentation</a></li>
+        <li><a href="https://github.com/yargs/yargs" target="_blank" rel="noopener noreferrer">Yargs on GitHub</a></li>
+        <li><a href="https://www.npmjs.com/package/cowsay" target="_blank" rel="noopener noreferrer">Cowsay on npm</a>
+        </li>
+        <li><a href="https://github.com/sindresorhus/boxen" target="_blank" rel="noopener noreferrer">Boxen on
+            GitHub</a></li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Fortunate Cow Project</p>
+    </footer>
+  </div>
+</body>
+
+</html>
