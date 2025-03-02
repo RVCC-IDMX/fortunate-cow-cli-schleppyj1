@@ -30,16 +30,18 @@ function loadFortunes() {
  * @returns {Array<Object>} The filtered array of fortune objects.
  */
 function filterFortunes(fortunes, category) {
-  // TODO: BEGIN STUDENT ASSIGNMENT
-  // TODO: If there is no category, return the original array
-  true; // replace this with your code here
+  if (Object.hasOwn(fortunes, 'category') && typeof fortunes.category !== 'undefined') {
+    return fortunes.filter(fortunes.category == category);
+  }
+
+  else {
+    return fortunes;
+  }
   // TODO: END STUDENT ASSIGNMENT
 
   // TODO: BEGIN STUDENT ASSIGNMENT
   // TODO: Create an array of fortunes matching category
-  true; // replace this with your code here
-  // TODO: END STUDENT ASSIGNMENT
-  return fortunes;
+
 }
 
 /**
@@ -51,9 +53,9 @@ function filterFortunes(fortunes, category) {
 function getRandomFortune(fortunes) {
   // TODO: BEGIN STUDENT ASSIGNMENT
   // TODO: msg must be changed to be a random fortune
-  const msg = `Get a random fortune from the ${fortunes.length} fortunes`;  // replace this with your code here
+  const randomIndex = Math.floor(Math.random() * fortunes.length);
+  return fortunes[randomIndex];
   // TODO: END STUDENT ASSIGNMENT
-  return msg;
 }
 
 /**
@@ -85,8 +87,9 @@ export function fortunateCow(category) {
 
   // TODO: BEGIN STUDENT ASSIGNMENT
   // TODO: Replace msg by calling the say function
-  const fortuneMessage = `${fortune} and then a cow using its say() function`;  // replace this with your code here
+  say(fortune);
+  // const fortuneMessage = `${fortune} and then a cow using its say() function`;  // replace this with your code here
   // TODO: END STUDENT ASSIGNMENT
-  return fortuneMessage;
+  return say(fortune);
 
 }
